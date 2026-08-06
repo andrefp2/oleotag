@@ -1,0 +1,10 @@
+<!-- Modelo placeholder 6 — trocar por foto real do design impresso -->
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Modelo com cantos arredondados duplos">
+  <rect width="400" height="400" fill="#14171C"/>
+  <rect x="65" y="135" width="270" height="130" rx="24" fill="#0F1216" stroke="#262B33" stroke-width="2"/>
+  <rect x="85" y="150" width="230" height="100" rx="16" fill="#050607" stroke="#F5A524" stroke-width="2.5"/>
+  <text x="200" y="188" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#F5A524" letter-spacing="1">PRÓXIMA TROCA</text>
+  <text x="200" y="212" text-anchor="middle" font-family="system-ui, sans-serif" font-size="15" font-weight="800" fill="#F3F4F6">00/00/0000</text>
+  <text x="200" y="232" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#9CA3AF">00.000 km</text>
+  <text x="200" y="300" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#9CA3AF">Modelo Duo</text>
+</svg>

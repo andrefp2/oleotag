@@ -1,0 +1,14 @@
+<!-- Placeholder demo de caneta — trocar por foto/vídeo real escrevendo na etiqueta -->
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Etiqueta sendo escrita com uma caneta comum">
+  <rect width="400" height="400" fill="#14171C"/>
+  <rect x="90" y="150" width="220" height="120" rx="8" fill="#050607" stroke="#F5A524" stroke-width="2"/>
+  <path d="M115 210 q20 -18 40 0 q20 18 40 0 q20 -18 40 0 q20 18 40 0" fill="none" stroke="#F3F4F6" stroke-width="3" stroke-linecap="round"/>
+  <line x1="115" y1="235" x2="235" y2="235" stroke="#3a3f47" stroke-width="3" stroke-linecap="round"/>
+  <g transform="rotate(-35 260 205)">
+    <rect x="255" y="120" width="10" height="95" rx="4" fill="#F5A524"/>
+    <polygon points="255,215 265,215 260,232" fill="#F3F4F6"/>
+  </g>
+  <g fill="#9CA3AF" font-family="system-ui, sans-serif" font-size="13" font-weight="700">
+    <text x="200" y="320" text-anchor="middle">Escreve com qualquer caneta</text>
+  </g>
+</svg>

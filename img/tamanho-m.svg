@@ -1,0 +1,11 @@
+<!-- Placeholder tamanho M — trocar por foto real com régua -->
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tamanho M, 5 por 4 centímetros">
+  <rect width="400" height="400" fill="#14171C"/>
+  <rect x="120" y="145" width="160" height="115" rx="6" fill="#050607" stroke="#F5A524" stroke-width="2"/>
+  <text x="200" y="212" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="800" fill="#F3F4F6">M</text>
+  <line x1="120" y1="272" x2="280" y2="272" stroke="#9CA3AF" stroke-width="1"/>
+  <line x1="120" y1="266" x2="120" y2="278" stroke="#9CA3AF" stroke-width="1"/>
+  <line x1="280" y1="266" x2="280" y2="278" stroke="#9CA3AF" stroke-width="1"/>
+  <text x="200" y="302" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#F5A524">5 x 4 cm</text>
+  <text x="200" y="332" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" fill="#9CA3AF">[medida ilustrativa]</text>
+</svg>

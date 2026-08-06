@@ -1,0 +1,66 @@
+/* Design tokens — paleta escura e sóbria, tipografia, espaçamento.
+   Breakpoints (documentados aqui pois custom properties não funcionam
+   dentro da condição de um @media): sm 480px | md 768px | lg 1024px | xl 1280px */
+
+:root {
+  /* Neutros escuros — leve tom azulado, não preto puro */
+  --color-bg: #0b0d10;
+  --color-bg-elevated: #14171c;
+  --color-bg-elevated-2: #1c2027;
+  --color-border: #262b33;
+  --color-text: #f3f4f6;
+  --color-text-muted: #9ca3af;
+
+  /* Accent âmbar — remete a óleo/ferramenta, alto contraste no dark */
+  --color-accent: #f5a524;
+  --color-accent-hover: #ffb84d;
+  --color-accent-contrast: #14171c;
+
+  /* WhatsApp — verde oficial, reconhecimento imediato do canal */
+  --color-whatsapp: #25d366;
+  --color-whatsapp-hover: #1ebe5a;
+
+  --color-success: #22c55e;
+  --color-success-bg: rgba(34, 197, 94, 0.12);
+  --color-danger: #ef4444;
+  --color-danger-bg: rgba(239, 68, 68, 0.12);
+
+  /* Tipografia — pilha de sistema: zero requisições de rede, renderização
+     instantânea (prioridade máxima para tráfego mobile vindo de anúncio) */
+  --font-base: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+
+  --fs-h1: clamp(1.9rem, 5vw + 1rem, 3.25rem);
+  --fs-h2: clamp(1.4rem, 3vw + 1rem, 2.1rem);
+  --fs-h3: clamp(1.125rem, 1.5vw + 1rem, 1.375rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-tiny: 0.75rem;
+
+  --lh-tight: 1.15;
+  --lh-normal: 1.5;
+
+  /* Espaçamento — escala base 4px */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-full: 999px;
+
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.35);
+  --shadow-fab: 0 6px 20px rgba(0, 0, 0, 0.45);
+
+  --container-max: 1120px;
+
+  --transition-fast: 150ms ease;
+  --transition-base: 220ms ease;
+}

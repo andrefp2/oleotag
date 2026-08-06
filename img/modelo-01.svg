@@ -1,0 +1,10 @@
+<!-- Modelo placeholder 1 — trocar por foto real do design impresso -->
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Modelo clássico">
+  <rect width="400" height="400" fill="#14171C"/>
+  <rect x="70" y="140" width="260" height="120" rx="8" fill="#050607" stroke="#F5A524" stroke-width="3"/>
+  <text x="200" y="180" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#F5A524" letter-spacing="1">TROCA DE ÓLEO</text>
+  <line x1="100" y1="196" x2="300" y2="196" stroke="#262B33"/>
+  <text x="200" y="222" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="800" fill="#F3F4F6">00/00/0000</text>
+  <text x="200" y="244" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#9CA3AF">00.000 km</text>
+  <text x="200" y="300" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#9CA3AF">Modelo Clássico</text>
+</svg>

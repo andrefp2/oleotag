@@ -1,0 +1,16 @@
+<!-- Placeholder de personalização — trocar por mockup real com logo de oficina -->
+<svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Etiqueta personalizada com logo e dados da oficina">
+  <rect width="400" height="300" fill="#0F1216"/>
+  <rect x="70" y="45" width="260" height="210" rx="10" fill="#050607" stroke="#F5A524" stroke-width="2"/>
+  <rect x="90" y="65" width="60" height="60" rx="8" fill="#1C2027" stroke="#262B33" stroke-dasharray="4 3"/>
+  <text x="120" y="99" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#9CA3AF">SEU</text>
+  <text x="120" y="110" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#9CA3AF">LOGO</text>
+  <text x="165" y="82" font-family="system-ui, sans-serif" font-size="15" font-weight="800" fill="#F3F4F6">Oficina do João</text>
+  <text x="165" y="102" font-family="system-ui, sans-serif" font-size="11" fill="#9CA3AF">(11) 99999-0000</text>
+  <text x="165" y="118" font-family="system-ui, sans-serif" font-size="11" fill="#9CA3AF">Rua Exemplo, 123</text>
+  <line x1="90" y1="150" x2="310" y2="150" stroke="#262B33"/>
+  <text x="90" y="180" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#F5A524" letter-spacing="1">PRÓXIMA TROCA</text>
+  <text x="90" y="205" font-family="system-ui, sans-serif" font-size="18" font-weight="800" fill="#F3F4F6">00/00/0000 · 00.000km</text>
+  <line x1="90" y1="225" x2="310" y2="225" stroke="#262B33"/>
+  <text x="90" y="245" font-family="system-ui, sans-serif" font-size="10" fill="#9CA3AF">Óleo: [TIPO/MARCA]</text>
+</svg>

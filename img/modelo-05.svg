@@ -1,0 +1,9 @@
+<!-- Modelo placeholder 5 — trocar por foto real do design impresso -->
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Modelo minimalista">
+  <rect width="400" height="400" fill="#14171C"/>
+  <rect x="70" y="150" width="260" height="100" rx="4" fill="#050607" stroke="#3a3f47" stroke-width="2"/>
+  <line x1="70" y1="200" x2="330" y2="200" stroke="#F5A524" stroke-width="2"/>
+  <text x="90" y="192" font-family="system-ui, sans-serif" font-size="10" font-weight="700" fill="#9CA3AF" letter-spacing="1">TROCA</text>
+  <text x="90" y="222" font-family="system-ui, sans-serif" font-size="17" font-weight="800" fill="#F3F4F6">00/00/0000</text>
+  <text x="200" y="290" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" fill="#9CA3AF">Modelo Minimalista</text>
+</svg>
