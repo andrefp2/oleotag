@@ -1,0 +1,14 @@
+<!-- Placeholder demo sem resíduo de cola — trocar por foto/vídeo real do descolamento -->
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Etiqueta sendo removida do vidro sem deixar resíduo de cola">
+  <rect width="400" height="400" fill="#14171C"/>
+  <rect x="70" y="120" width="260" height="160" rx="6" fill="#0B0D10" stroke="#2a2f37" stroke-width="2"/>
+  <rect x="90" y="150" width="120" height="80" rx="6" fill="#050607" stroke="#F5A524" stroke-width="2"/>
+  <path d="M210 150 q40 -10 70 -45" fill="none" stroke="#050607" stroke-width="2"/>
+  <path d="M210 150 q40 -10 70 -45 q6 4 0 10 q-30 32 -66 42 Z" fill="#050607" stroke="#F5A524" stroke-width="2" stroke-linejoin="round"/>
+  <g fill="none" stroke="#22C55E" stroke-width="4" stroke-linecap="round">
+    <path d="M118 205 l10 10 l20 -22"/>
+  </g>
+  <g fill="#9CA3AF" font-family="system-ui, sans-serif" font-size="13" font-weight="700">
+    <text x="200" y="320" text-anchor="middle">Sai inteira, sem deixar cola no vidro</text>
+  </g>
+</svg>
