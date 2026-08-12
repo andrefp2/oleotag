@@ -40,7 +40,15 @@ h1,
 h2,
 h3 {
   line-height: var(--lh-tight);
-  font-weight: 800;
+  font-weight: var(--fw-display);
+}
+
+/* Headlines de destaque em UPPERCASE — sentence-case reduziria a voz de
+   marca a "genérica" (regra do sistema: h1/h2 sempre caixa alta, h3 fica
+   em sentence-case por ser título de card/produto, não headline editorial). */
+h1,
+h2 {
+  text-transform: uppercase;
 }
 
 h1 {
@@ -53,6 +61,11 @@ h2 {
 
 h3 {
   font-size: var(--fs-h3);
+}
+
+p {
+  font-weight: var(--fw-body);
+  color: var(--color-text-muted);
 }
 
 a {
@@ -100,7 +113,7 @@ ol {
   color: var(--color-accent);
   font-size: var(--fs-small);
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: var(--tracking-label);
   text-transform: uppercase;
   margin-bottom: var(--space-2);
 }
@@ -120,13 +133,16 @@ ol {
   text-align: center;
 }
 
-/* Reserva de espaço para imagens/placeholders — evita layout shift (CLS) */
+/* Reserva de espaço para imagens/placeholders — evita layout shift (CLS).
+   Superfície plana (sem gradiente): o sistema trata fotografia como a
+   única fonte de profundidade, nunca chrome decorativo atrás dela. */
 .media-frame {
   position: relative;
   width: 100%;
+  min-width: 0;
   overflow: hidden;
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, var(--color-bg-elevated), var(--color-bg-elevated-2));
+  background: var(--color-bg-soft);
   border: 1px solid var(--color-border);
 }
 

@@ -1,66 +1,84 @@
-/* Design tokens — paleta escura e sóbria, tipografia, espaçamento.
+/* Design tokens — sistema inspirado no DESIGN-bmw-m.md (canvas quase preto,
+   headlines em UPPERCASE contrastando com corpo leve, cantos retos,
+   ritmo de espaçamento generoso). O accent âmbar da OleoTag substitui a
+   faixa tricolor da BMW M — mantemos "uma cor de destaque usada com
+   moderação", mas sem copiar a paleta específica da marca BMW.
    Breakpoints (documentados aqui pois custom properties não funcionam
    dentro da condição de um @media): sm 480px | md 768px | lg 1024px | xl 1280px */
 
 :root {
-  /* Neutros escuros — leve tom azulado, não preto puro */
-  --color-bg: #0b0d10;
-  --color-bg-elevated: #14171c;
-  --color-bg-elevated-2: #1c2027;
-  --color-border: #262b33;
-  --color-text: #f3f4f6;
-  --color-text-muted: #9ca3af;
+  /* Canvas quase preto puro + superfícies elevadas planas, sem gradiente */
+  --color-bg: #000000;
+  --color-bg-soft: #0d0d0d;
+  --color-bg-elevated: #1a1a1a;
+  --color-bg-elevated-2: #262626;
+  --color-border: #3c3c3c;
+  --color-border-strong: #262626;
 
-  /* Accent âmbar — remete a óleo/ferramenta, alto contraste no dark */
+  --color-text: #ffffff;
+  --color-text-strong: #e6e6e6;
+  --color-text-muted: #bbbbbb;
+  --color-caption: #7e7e7e;
+
+  /* Accent âmbar da OleoTag — único destaque, usado com moderação (nunca como fundo grande) */
   --color-accent: #f5a524;
   --color-accent-hover: #ffb84d;
-  --color-accent-contrast: #14171c;
+  --color-accent-contrast: #000000;
 
-  /* WhatsApp — verde oficial, reconhecimento imediato do canal */
+  /* WhatsApp — verde oficial, exceção funcional (reconhecimento do canal, não é cor de marca) */
   --color-whatsapp: #25d366;
   --color-whatsapp-hover: #1ebe5a;
 
-  --color-success: #22c55e;
-  --color-success-bg: rgba(34, 197, 94, 0.12);
+  --color-success: #0fa336;
+  --color-success-bg: rgba(15, 163, 54, 0.14);
   --color-danger: #ef4444;
-  --color-danger-bg: rgba(239, 68, 68, 0.12);
+  --color-danger-bg: rgba(239, 68, 68, 0.14);
+  --color-warning: #f4b400;
 
-  /* Tipografia — pilha de sistema: zero requisições de rede, renderização
-     instantânea (prioridade máxima para tráfego mobile vindo de anúncio) */
+  /* Tipografia — pilha de sistema (sem download de fonte, prioridade de
+     velocidade em mobile de anúncio). O contraste de peso (headline pesada
+     em caixa alta vs. corpo leve) é a assinatura editorial, com ou sem a
+     fonte de marca. */
   --font-base: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
     Arial, sans-serif;
 
-  --fs-h1: clamp(1.9rem, 5vw + 1rem, 3.25rem);
-  --fs-h2: clamp(1.4rem, 3vw + 1rem, 2.1rem);
-  --fs-h3: clamp(1.125rem, 1.5vw + 1rem, 1.375rem);
+  --fw-display: 700;
+  --fw-title: 700;
+  --fw-body: 300;
+  --fw-body-medium: 400;
+
+  --fs-h1: clamp(2.75rem, 6vw + 1.5rem, 5rem);
+  --fs-h2: clamp(1.75rem, 4vw + 1rem, 3.5rem);
+  --fs-h3: clamp(1.25rem, 1.5vw + 1rem, 1.5rem);
+  --fs-title-md: 1.25rem;
   --fs-body: 1rem;
   --fs-small: 0.875rem;
   --fs-tiny: 0.75rem;
 
-  --lh-tight: 1.15;
+  --tracking-label: 1.5px;
+  --tracking-caption: 0.5px;
+
+  --lh-tight: 1.1;
   --lh-normal: 1.5;
 
-  /* Espaçamento — escala base 4px */
+  /* Espaçamento — escala do sistema: xxs..section (96px de ritmo entre bandas) */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
   --space-4: 16px;
   --space-5: 24px;
-  --space-6: 32px;
-  --space-7: 48px;
-  --space-8: 64px;
-  --space-9: 96px;
+  --space-6: 40px;
+  --space-7: 64px;
+  --space-8: 96px;
 
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 22px;
-  --radius-full: 999px;
+  /* Radius quase sempre 0 — silhueta retangular é a assinatura do sistema.
+     rounded-full só para botões circulares (FAB, ícones). */
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-full: 9999px;
 
-  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.35);
-  --shadow-fab: 0 6px 20px rgba(0, 0, 0, 0.45);
+  --container-max: 1440px;
 
-  --container-max: 1120px;
-
-  --transition-fast: 150ms ease;
-  --transition-base: 220ms ease;
+  --transition-fast: 120ms ease;
 }

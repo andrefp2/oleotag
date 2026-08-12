@@ -4,7 +4,9 @@
   color: var(--color-accent);
 }
 
-/* ---------- Botões ---------- */
+/* ---------- Botões ----------
+   Silhueta retangular (radius 0) + rótulo em caixa alta com tracking —
+   "a silhueta industrial-precisa É a marca", não um enfeite. */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -16,9 +18,11 @@
   border: 1px solid transparent;
   font-weight: 700;
   font-size: var(--fs-body);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
   text-decoration: none;
   cursor: pointer;
-  transition: background-color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+  transition: background-color var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
 }
 
 .btn:active {
@@ -58,13 +62,13 @@
 
 .btn--outline {
   background: transparent;
-  border-color: var(--color-border);
+  border-color: var(--color-text);
   color: var(--color-text);
 }
 
 .btn--outline:hover {
-  border-color: var(--color-accent);
-  color: var(--color-accent);
+  background: var(--color-text);
+  color: var(--color-accent-contrast);
 }
 
 .btn--whatsapp {
@@ -86,13 +90,14 @@
   background: rgba(37, 211, 102, 0.12);
 }
 
-/* ---------- Cards ---------- */
+/* ---------- Cards ----------
+   Superfície plana, sem sombra: a profundidade vem do contraste entre o
+   canvas preto e a superfície levemente mais clara, nunca de drop-shadow. */
 .card {
   background: var(--color-bg-elevated);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: var(--space-5);
-  box-shadow: var(--shadow-card);
 }
 
 .card--tamanho h3 {
@@ -114,7 +119,7 @@
 
 .card--preco--destaque {
   border-color: var(--color-accent);
-  box-shadow: 0 0 0 1px var(--color-accent), var(--shadow-card);
+  border-width: 2px;
 }
 
 .card--preco__qtd {
@@ -154,9 +159,8 @@
   font-size: var(--fs-tiny);
   font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: var(--tracking-label);
   padding: var(--space-1) var(--space-3);
-  border-radius: var(--radius-full);
 }
 
 .card--depoimento {
@@ -252,8 +256,9 @@
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 1px;
+  border-color: var(--color-text);
+  outline: 2px solid var(--color-text);
+  outline-offset: -2px;
 }
 
 .field input[aria-invalid="true"],
