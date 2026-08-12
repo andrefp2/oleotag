@@ -1,8 +1,10 @@
 /* Design tokens — sistema inspirado no DESIGN-bmw-m.md (canvas quase preto,
    headlines em UPPERCASE contrastando com corpo leve, cantos retos,
-   ritmo de espaçamento generoso). O accent âmbar da OleoTag substitui a
-   faixa tricolor da BMW M — mantemos "uma cor de destaque usada com
-   moderação", mas sem copiar a paleta específica da marca BMW.
+   ritmo de espaçamento generoso). A faixa de marca usa os dois azuis do
+   doc só que com o terceiro tom (vermelho) trocado por laranja — o
+   suficiente para não repetir a assinatura visual específica da BMW M
+   (azul/azul/vermelho), mantendo o mesmo princípio: uma faixa usada com
+   moderação, nunca como fundo grande.
    Breakpoints (documentados aqui pois custom properties não funcionam
    dentro da condição de um @media): sm 480px | md 768px | lg 1024px | xl 1280px */
 
@@ -24,6 +26,13 @@
   --color-accent: #f5a524;
   --color-accent-hover: #ffb84d;
   --color-accent-contrast: #000000;
+
+  /* Faixa de marca (stripe-divider) — mesmos azuis do DESIGN-bmw-m.md,
+     terceiro tom trocado de vermelho para laranja. Só para dividers e
+     momentos pontuais de identidade — nunca fundo, nunca botão. */
+  --color-stripe-blue-light: #0066b1;
+  --color-stripe-blue-dark: #1c69d4;
+  --color-stripe-orange: #f5711f;
 
   /* WhatsApp — verde oficial, exceção funcional (reconhecimento do canal, não é cor de marca) */
   --color-whatsapp: #25d366;
