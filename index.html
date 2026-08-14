@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Etiquetas Blackout para Troca de Óleo | OleoTag</title>
   <meta name="description" content="Etiquetas 100% blackout para troca de óleo: não desbotam no sol e escrevem com qualquer caneta. Personalize com o logo da sua oficina. Fale com a gente.">
-  <meta name="theme-color" content="#000000">
+  <meta name="theme-color" content="#faf9f6">
   <link rel="canonical" href="https://SEU-DOMINIO-AQUI.com.br/">
 
   <!-- Open Graph / compartilhamento em anúncios e redes sociais -->
@@ -20,6 +20,13 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <!-- TODO: gerar apple-touch-icon.png (180x180) real e descomentar a linha abaixo -->
   <!-- <link rel="apple-touch-icon" href="/apple-touch-icon.png"> -->
+
+  <!-- Fraunces só para headlines de exibição (h1/h2) — corpo fica em fonte
+       de sistema por performance. Peso 400 e eixo óptico grande (opsz alto),
+       que é como a serifa fica mais elegante/menos "livro de bolso". -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
@@ -157,7 +164,7 @@
     </section>
 
     <!-- ===================== PREÇOS ===================== -->
-    <section id="precos" class="section">
+    <section id="precos" class="section section--stage">
       <div class="container">
         <div class="section-head section-head--center">
           <p class="eyebrow">Preços e quantidades</p>
@@ -381,7 +388,7 @@
   </main>
 
   <div class="stripe-divider" aria-hidden="true"></div>
-  <footer class="site-footer">
+  <footer class="site-footer section--stage">
     <div class="container site-footer__inner">
       <img src="img/logo.svg" alt="OleoTag" width="120" height="30">
       <p>© <span id="ano-atual">2026</span> OleoTag. [Razão social / CNPJ de exemplo].</p>

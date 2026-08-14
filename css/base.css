@@ -36,19 +36,20 @@ figure {
   margin: 0;
 }
 
-h1,
-h2,
-h3 {
-  line-height: var(--lh-tight);
-  font-weight: var(--fw-display);
-}
-
-/* Headlines de destaque em UPPERCASE — sentence-case reduziria a voz de
-   marca a "genérica" (regra do sistema: h1/h2 sempre caixa alta, h3 fica
-   em sentence-case por ser título de card/produto, não headline editorial). */
+/* Headlines de exibição (h1/h2) em serifa, peso normal, sentence-case —
+   a elegância vem da própria letra, não de peso ou caixa alta. h3 fica em
+   sans-serif (título de card/produto, não headline editorial). */
 h1,
 h2 {
-  text-transform: uppercase;
+  font-family: var(--font-display);
+  font-weight: var(--fw-display);
+  line-height: var(--lh-tight);
+}
+
+h3 {
+  font-family: var(--font-base);
+  font-weight: var(--fw-title);
+  line-height: var(--lh-tight);
 }
 
 h1 {

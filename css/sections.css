@@ -8,10 +8,31 @@
   padding-block: var(--space-8);
 }
 
-/* Banda alternada: canvas preto puro vs. surface-soft (quase preto) — nunca
-   duas bandas com o mesmo modo em sequência, para dar ritmo editorial. */
+/* Banda alternada: creme puro vs. um tom levemente diferente — ritmo
+   editorial sutil dentro da zona clara da página. */
 .section--alt {
   background: var(--color-bg-soft);
+}
+
+/* Banda "palco": inverte para o quase-preto quente, reservada só para o
+   momento de venda (preços) e o rodapé — como um spotlight no pedido.
+   Redefine os tokens semânticos localmente; todo componente (card, badge,
+   texto) já se re-tematiza sozinho, sem precisar de classes extras. */
+.section--stage {
+  background: var(--color-stage-bg);
+  /* "color" precisa ser redeclarado aqui (não só a custom property): h1/h2
+     só herdam a cor já resolvida do body, então sem isso continuariam
+     escuros dentro da banda escura. */
+  color: var(--color-stage-text);
+  --color-bg: var(--color-stage-bg);
+  --color-bg-soft: var(--color-stage-bg);
+  --color-bg-elevated: var(--color-stage-card);
+  --color-bg-elevated-2: var(--color-stage-card);
+  --color-border: var(--color-stage-border);
+  --color-text: var(--color-stage-text);
+  --color-text-strong: var(--color-stage-text);
+  --color-text-muted: var(--color-stage-text-muted);
+  --color-caption: var(--color-stage-text-muted);
 }
 
 /* ---------- Header ----------

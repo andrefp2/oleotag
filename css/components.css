@@ -19,8 +19,9 @@
 }
 
 /* ---------- Botões ----------
-   Silhueta retangular (radius 0) + rótulo em caixa alta com tracking —
-   "a silhueta industrial-precisa É a marca", não um enfeite. */
+   Rótulo pequeno em caixa alta com tracking largo, peso normal (a
+   elegância vem do espaçamento das letras, não do peso). Cantos suaves
+   (radius-sm), nunca retos. */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -28,10 +29,10 @@
   gap: var(--space-2);
   min-height: 44px;
   padding: 0 var(--space-5);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-sm);
   border: 1px solid transparent;
-  font-weight: 700;
-  font-size: var(--fs-body);
+  font-weight: 400;
+  font-size: var(--fs-small);
   text-transform: uppercase;
   letter-spacing: var(--tracking-label);
   text-decoration: none;
@@ -76,12 +77,12 @@
 
 .btn--outline {
   background: transparent;
-  border-color: var(--color-text);
-  color: var(--color-text);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
 }
 
 .btn--outline:hover {
-  background: var(--color-text);
+  background: var(--color-accent);
   color: var(--color-accent-contrast);
 }
 
@@ -106,12 +107,40 @@
 
 /* ---------- Cards ----------
    Superfície plana, sem sombra: a profundidade vem do contraste entre o
-   canvas preto e a superfície levemente mais clara, nunca de drop-shadow. */
+   canvas preto e a superfície levemente mais clara, nunca de drop-shadow.
+   Hover: brilho dourado centralizado (::before radial-gradient) some/aparece
+   com fade de 500ms, junto com a borda ficando mais forte — sem JS, sem
+   rastrear o cursor (o efeito de origem também é fixo no centro). */
 .card {
+  position: relative;
+  overflow: hidden;
   background: var(--color-bg-elevated);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: var(--space-5);
+  transition: border-color 500ms ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 500ms ease;
+  background: radial-gradient(
+    420px circle at 50% 50%,
+    color-mix(in oklab, var(--color-accent) 22%, transparent),
+    transparent 65%
+  );
+}
+
+.card:hover {
+  border-color: var(--color-accent);
+}
+
+.card:hover::before {
+  opacity: 1;
 }
 
 .card--tamanho h3 {
@@ -142,8 +171,9 @@
 }
 
 .card--preco__valor {
-  font-size: 1.9rem;
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 500;
   color: var(--color-accent);
 }
 
@@ -171,10 +201,11 @@
   background: var(--color-accent);
   color: var(--color-accent-contrast);
   font-size: var(--fs-tiny);
-  font-weight: 800;
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: var(--tracking-label);
   padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
 }
 
 .card--depoimento {
@@ -270,8 +301,8 @@
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
-  border-color: var(--color-text);
-  outline: 2px solid var(--color-text);
+  border-color: var(--color-accent);
+  outline: 2px solid var(--color-accent);
   outline-offset: -2px;
 }
 
