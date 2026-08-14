@@ -108,9 +108,11 @@
 /* ---------- Cards ----------
    Superfície plana, sem sombra: a profundidade vem do contraste entre o
    canvas preto e a superfície levemente mais clara, nunca de drop-shadow.
-   Hover: brilho dourado centralizado (::before radial-gradient) some/aparece
-   com fade de 500ms, junto com a borda ficando mais forte — sem JS, sem
-   rastrear o cursor (o efeito de origem também é fixo no centro). */
+   Hover: leve inclinação 3D seguindo o cursor (rotateX/rotateY via JS em
+   js/tilt.js) + brilho radial dourado que acompanha a posição do mouse
+   (--mx/--my, também setados pelo JS) e some com fade quando o mouse sai.
+   Sem prefers-reduced-motion: tilt.js não aplica a inclinação, só o fade
+   do brilho continua (definido aqui em CSS puro). */
 .card {
   position: relative;
   overflow: hidden;
@@ -118,7 +120,8 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: var(--space-5);
-  transition: border-color 500ms ease;
+  transition: border-color 500ms ease, transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+  transform: rotateX(0deg) rotateY(0deg);
 }
 
 .card::before {
@@ -129,7 +132,7 @@
   opacity: 0;
   transition: opacity 500ms ease;
   background: radial-gradient(
-    420px circle at 50% 50%,
+    420px circle at var(--mx, 50%) var(--my, 50%),
     color-mix(in oklab, var(--color-accent) 22%, transparent),
     transparent 65%
   );
@@ -243,6 +246,7 @@
 .grid {
   display: grid;
   gap: var(--space-5);
+  perspective: 900px;
 }
 
 .grid--3 {
