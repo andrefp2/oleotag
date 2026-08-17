@@ -26,7 +26,7 @@
        que é como a serifa fica mais elegante/menos "livro de bolso". -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400&family=Caveat:wght@600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/base.css">
@@ -78,11 +78,94 @@
             <li>✔ Logo da sua oficina</li>
           </ul>
         </div>
-        <div class="hero__media media-frame ratio-4-3">
-          <!-- TODO: substituir pelo vídeo real (mp4) mostrando a etiqueta em uso -->
-          <video autoplay muted loop playsinline poster="img/hero-mockup.svg" width="400" height="300" aria-label="Etiqueta blackout aplicada no para-brisa, bloqueando os raios de sol">
-            <source src="img/hero-video.mp4" type="video/mp4">
-          </video>
+        <div class="hero__media hero__media--label3d">
+          <div class="label3d" role="img" aria-label="Modelo em branco da etiqueta de troca de óleo, girando">
+            <div class="label3d__spin">
+              <!-- Lado do logo: brilho de verniz mais forte (efeito "cola") — ver
+                   .label3d__face--front::after em components.css -->
+              <div class="label3d__face label3d__face--front">
+                <div class="label3d__logo">
+                  <img class="label3d__logo-upload" alt="Logo enviado pelo usuário" hidden>
+                  <svg class="label3d__logo-icon" viewBox="0 0 48 48" aria-hidden="true">
+                    <circle cx="24" cy="24" r="21" fill="none" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="24" cy="24" r="16.5" fill="none" stroke="currentColor" stroke-width="1"/>
+                    <g stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+                      <line x1="24" y1="3.5" x2="24" y2="8"/>
+                      <line x1="24" y1="40" x2="24" y2="44.5"/>
+                      <line x1="3.5" y1="24" x2="8" y2="24"/>
+                      <line x1="40" y1="24" x2="44.5" y2="24"/>
+                      <line x1="9.5" y1="9.5" x2="12.7" y2="12.7"/>
+                      <line x1="35.3" y1="35.3" x2="38.5" y2="38.5"/>
+                      <line x1="38.5" y1="9.5" x2="35.3" y2="12.7"/>
+                      <line x1="12.7" y1="35.3" x2="9.5" y2="38.5"/>
+                    </g>
+                    <path d="M31 14a6 6 0 0 0-8.2 7L14 30l3 3 8.8-8.8a6 6 0 0 0 7-8.2l-4 4-3-3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+                  </svg>
+                  <span class="label3d__logo-phone">(11) 91234-5678</span>
+                </div>
+              </div>
+              <div class="label3d__face label3d__face--back">
+                <div class="label3d__form">
+                  <p class="label3d__form-header">Troca de óleo</p>
+                  <div class="label3d__field">
+                    <span class="label3d__field-label">Data</span>
+                    <span class="label3d__field-value label3d__handwrite" style="--tilt: -2deg">12/03/2026</span>
+                  </div>
+                  <div class="label3d__field">
+                    <span class="label3d__field-label">KM</span>
+                    <span class="label3d__field-value label3d__handwrite" style="--tilt: 1.5deg">45.230</span>
+                    <span class="label3d__field-suffix">km</span>
+                  </div>
+                  <div class="label3d__field">
+                    <span class="label3d__field-label">Produto</span>
+                    <span class="label3d__field-value label3d__handwrite" style="--tilt: -1deg">5W30 Sint.</span>
+                  </div>
+
+                  <p class="label3d__form-header label3d__form-header--secondary">Próximas trocas</p>
+                  <div class="label3d__field label3d__field--blank">
+                    <span class="label3d__field-label">Óleo motor</span>
+                    <span class="label3d__field-line"></span>
+                    <span class="label3d__field-suffix">km</span>
+                  </div>
+                  <div class="label3d__field label3d__field--blank">
+                    <span class="label3d__field-label">Filtro óleo</span>
+                    <span class="label3d__field-line"></span>
+                    <span class="label3d__field-suffix">km</span>
+                  </div>
+                  <div class="label3d__field label3d__field--blank">
+                    <span class="label3d__field-label">Filtro ar</span>
+                    <span class="label3d__field-line"></span>
+                    <span class="label3d__field-suffix">km</span>
+                  </div>
+                  <div class="label3d__field label3d__field--blank">
+                    <span class="label3d__field-label">Filtro comb.</span>
+                    <span class="label3d__field-line"></span>
+                    <span class="label3d__field-suffix">km</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="label3d-controls">
+        <p class="label3d-controls__hint">Personalize a etiqueta acima:</p>
+        <div class="label3d-controls__row">
+          <label class="label3d-controls__btn">
+            <input type="file" accept="image/*" id="label3d-logo-input" class="sr-only">
+            Enviar logo
+          </label>
+
+          <div class="label3d-controls__group" role="group" aria-label="Cor de fundo">
+            <button type="button" class="label3d-controls__swatch is-active" data-bg="#fdfdfc" data-mode="light" style="--swatch: #fdfdfc" aria-label="Fundo branco"></button>
+            <button type="button" class="label3d-controls__swatch" data-bg="#0b0d10" data-mode="dark" style="--swatch: #0b0d10" aria-label="Fundo blackout"></button>
+            <button type="button" class="label3d-controls__swatch" data-bg="#f4ecd8" data-mode="light" style="--swatch: #f4ecd8" aria-label="Fundo creme"></button>
+            <button type="button" class="label3d-controls__swatch" data-bg="#1c2f4a" data-mode="dark" style="--swatch: #1c2f4a" aria-label="Fundo azul"></button>
+            <button type="button" class="label3d-controls__swatch" data-bg="#3a1414" data-mode="dark" style="--swatch: #3a1414" aria-label="Fundo vinho"></button>
+          </div>
+
+          <input type="tel" id="label3d-phone-input" class="label3d-controls__input" placeholder="Seu WhatsApp: (11) 91234-5678" aria-label="Telefone que aparece na etiqueta">
+        </div>
+          </div>
         </div>
       </div>
     </section>
@@ -413,5 +496,7 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js" defer></script>
   <script src="js/scroll-reveal.js" defer></script>
+  <script src="js/label3d.js" defer></script>
+  <script src="js/label3d-customize.js" defer></script>
 </body>
 </html>

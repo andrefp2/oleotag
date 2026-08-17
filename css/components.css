@@ -4,6 +4,273 @@
   color: var(--color-accent);
 }
 
+/* ---------- Selo 3D (etiqueta em branco, realista) ----------
+   CSS 3D puro, sem WebGL, sem foto: um cartão branco glossy (gradiente +
+   brilho diagonal + sombra) simulando o material real da etiqueta em
+   branco, sem nenhuma borda colorida — só a própria luz definindo a
+   borda, como numa foto de produto de verdade. Duas faces via
+   backface-visibility para ter profundidade real ao girar. Peça central
+   do hero: grande, centralizada. Proporção retrato (700:950), igual à
+   etiqueta física.
+   A rotação (giro automático devagar, pausa no hover, e arrastar com o
+   dedo pra girar livre em qualquer direção no touch) é 100% controlada
+   por js/label3d.js — nada de @keyframes aqui, pra não competir com o
+   transform que o JS escreve inline. touch-action:none impede o
+   navegador de tentar rolar a página a partir do próprio selo. */
+.label3d {
+  position: relative;
+  width: min(240px, 60%);
+  aspect-ratio: 700 / 950;
+  perspective: 900px;
+  touch-action: none;
+}
+
+/* Fundo escuro escolhido no painel de personalização → texto/tinta claros
+   (igual às canetas metálicas reais usadas em etiqueta blackout). */
+.label3d[data-mode="dark"] {
+  --label3d-ink: #f3f2ef;
+  --label3d-ink-muted: #b8b6ae;
+  --label3d-line: rgba(255, 255, 255, 0.2);
+  --label3d-pen: #f0e6c8;
+}
+
+/* Sombra de "chão": fica parada (não gira com o cartão) — é assim que
+   uma sombra real se comporta, o que sozinho já ajuda muito o realismo.
+   Elipse desfocada, mais escura perto do centro. */
+.label3d::after {
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: -7%;
+  height: 16%;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0, 0, 0, 0.32) 0%,
+    rgba(0, 0, 0, 0.14) 55%,
+    transparent 78%
+  );
+  filter: blur(7px);
+  pointer-events: none;
+}
+
+.label3d__spin {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+
+.label3d__face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 5%;
+  backface-visibility: hidden;
+  container-type: inline-size;
+  --label3d-bg: #fdfdfc;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")
+      0 0 / 140px 140px,
+    radial-gradient(ellipse 60% 40% at 22% 26%, rgba(0, 0, 0, 0.035), transparent 60%),
+    radial-gradient(ellipse 55% 45% at 78% 72%, rgba(0, 0, 0, 0.03), transparent 62%),
+    radial-gradient(ellipse 50% 35% at 58% 12%, rgba(255, 255, 255, 0.45), transparent 55%),
+    linear-gradient(
+      150deg,
+      color-mix(in srgb, var(--label3d-bg) 100%, white 6%) 0%,
+      color-mix(in srgb, var(--label3d-bg) 90%, black 8%) 45%,
+      color-mix(in srgb, var(--label3d-bg) 100%, white 6%) 100%
+    );
+  /* sombra de contato (perto, definida) + sombra ambiente (longe, difusa)
+     — duas camadas em vez de uma só é o que faz parecer profundidade
+     física, não um retângulo flutuando. Os insets simulam a espessura
+     real de um adesivo (aro escuro sutil da borda + brilho da lâmina no
+     topo). */
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.18),
+    0 6px 10px -4px rgba(0, 0, 0, 0.18),
+    0 22px 40px -12px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.07),
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.75),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.04);
+}
+
+/* Reflexo dinâmico: --gloss-x/--gloss-y/--gloss-shift/--gloss-intensity
+   são escritos a cada frame por js/label3d.js, calculados a partir do
+   ângulo 3D real da face (a de trás tem o ângulo oposto da da frente).
+   O reflexo desliza pela superfície e quase some quando a face está de
+   perfil — é isso que faz parecer luz de verdade, não uma textura fixa. */
+.label3d__face::before {
+  content: "";
+  position: absolute;
+  inset: -30%;
+  background: linear-gradient(
+    115deg,
+    transparent 32%,
+    rgba(255, 255, 255, 0.55) 46%,
+    rgba(255, 255, 255, 0.12) 56%,
+    transparent 68%
+  );
+  transform: translateX(var(--gloss-shift, 0%));
+  opacity: var(--gloss-intensity, 1);
+  pointer-events: none;
+}
+
+/* "Brilho da cola": verniz mais forte e molhado só no lado do logo — uma
+   segunda camada de brilho (mancha radial, como um reflexo de luz pontual)
+   por cima do brilho diagonal padrão, simulando o laminado bem espesso
+   que cobre etiquetas personalizadas de verdade. Também segue o ângulo
+   real via --gloss-x/--gloss-y. */
+.label3d__face--front::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 55% 30% at var(--gloss-x, 28%) var(--gloss-y, 18%),
+    rgba(255, 255, 255, 0.85),
+    rgba(255, 255, 255, 0.25) 45%,
+    transparent 70%
+  );
+  opacity: var(--gloss-intensity, 1);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.label3d__face--back {
+  transform: rotateY(180deg);
+}
+
+/* Frente: logo genérico da oficina (personalização) */
+.label3d__logo {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12%;
+  text-align: center;
+}
+
+.label3d__logo-upload {
+  max-width: 60%;
+  max-height: 45%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 4px;
+}
+
+.label3d__logo-icon {
+  width: 22%;
+  height: auto;
+  color: var(--color-accent);
+  margin-bottom: 4px;
+}
+
+.label3d__logo-phone {
+  font-family: var(--font-base);
+  font-weight: 700;
+  font-size: clamp(0.7rem, 4.2cqw, 0.9rem);
+  letter-spacing: 0.5px;
+  color: var(--label3d-ink, #1c1c1a);
+  margin-top: 4%;
+}
+
+/* Verso: estrutura real de acompanhamento (troca atual + próximas) */
+.label3d__form {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4.5%;
+  padding: 8% 10%;
+}
+
+.label3d__form-header {
+  font-family: var(--font-base);
+  font-weight: 700;
+  font-size: clamp(0.55rem, 3.2cqw, 0.7rem);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--label3d-ink, #1c1c1a);
+  border-bottom: 1.5px solid var(--label3d-ink-muted, #8a8880);
+  padding-bottom: 2%;
+}
+
+.label3d__form-header--secondary {
+  margin-top: 2%;
+  font-size: clamp(0.5rem, 2.8cqw, 0.62rem);
+  color: var(--label3d-ink-muted, #8a8880);
+  border-bottom-width: 1px;
+}
+
+.label3d__field {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  border-bottom: 1px solid var(--label3d-line, rgba(0, 0, 0, 0.12));
+  padding-bottom: 2px;
+}
+
+.label3d__field-label {
+  font-family: var(--font-base);
+  font-weight: 600;
+  font-size: clamp(0.44rem, 2.4cqw, 0.58rem);
+  color: var(--label3d-ink-muted, #8a8880);
+  flex-shrink: 0;
+}
+
+.label3d__field-value {
+  flex: 1;
+}
+
+.label3d__field-suffix {
+  font-family: var(--font-base);
+  font-size: clamp(0.4rem, 2.1cqw, 0.5rem);
+  color: var(--label3d-ink-muted, #8a8880);
+  flex-shrink: 0;
+}
+
+/* Campos "próximas trocas": linha em branco, sem caligrafia — ainda não
+   preenchidos, igual a como fica na prática até o próximo serviço. */
+.label3d__field--blank .label3d__field-line {
+  flex: 1;
+  border-bottom: 1px dashed var(--label3d-line, rgba(0, 0, 0, 0.2));
+  align-self: center;
+  height: 1px;
+}
+
+/* Caligrafia simulada: tinta azul-escuro (ou clara, em fundo escuro —
+   igual às canetas metálicas de verdade pra etiqueta blackout), leve
+   rotação e desalinhamento por campo — assinatura de algo escrito à mão
+   de verdade, não impresso. */
+.label3d__handwrite {
+  font-family: "Caveat", cursive;
+  font-weight: 600;
+  font-size: clamp(1.1rem, 7cqw, 1.5rem);
+  color: var(--label3d-pen, #1a3a6e);
+  display: inline-block;
+  transform: rotate(var(--tilt, -2deg));
+}
+
+.label3d__handwrite--1 {
+  --tilt: -2deg;
+}
+
+.label3d__handwrite--2 {
+  --tilt: 1.5deg;
+}
+
+.label3d__handwrite--3 {
+  --tilt: -1deg;
+}
+
 /* ---------- Stripe divider ----------
    Faixa de marca de 4px — usar só em momentos pontuais de identidade
    (abaixo do header, antes do rodapé). Nunca como fundo de seção, nunca
@@ -440,4 +707,112 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/* ---------- Painel de personalização do selo 3D ---------- */
+.label3d-controls {
+  margin-top: var(--space-3);
+  text-align: center;
+}
+
+.label3d-controls__hint {
+  font-size: var(--fs-small);
+  color: var(--color-caption);
+  margin-bottom: var(--space-3);
+}
+
+.label3d-controls__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+}
+
+.label3d-controls__btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 var(--space-4);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+  font-family: var(--font-base);
+  font-weight: 400;
+  font-size: var(--fs-small);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-label);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.label3d-controls__btn:hover {
+  background: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+.label3d-controls__group {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.label3d-controls__swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--swatch);
+  border: 2px solid var(--color-border);
+  cursor: pointer;
+  padding: 0;
+  transition: border-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.label3d-controls__swatch:hover {
+  transform: scale(1.1);
+}
+
+.label3d-controls__swatch.is-active {
+  border-color: var(--color-accent);
+}
+
+.label3d-controls__template-btn {
+  min-height: 32px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-muted);
+  font-family: var(--font-base);
+  font-size: var(--fs-tiny);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.label3d-controls__template-btn:hover {
+  border-color: var(--color-accent);
+}
+
+.label3d-controls__template-btn.is-active {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  color: var(--color-accent-contrast);
+}
+
+.label3d-controls__input {
+  min-height: 40px;
+  width: 220px;
+  max-width: 100%;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+  font-family: var(--font-base);
+  font-size: var(--fs-small);
+}
+
+.label3d-controls__input:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: -2px;
 }

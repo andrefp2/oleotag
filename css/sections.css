@@ -102,6 +102,17 @@
   order: -1;
 }
 
+/* Sem media-frame aqui (evita moldura dupla por cima do próprio selo 3D) —
+   só centraliza o selo dentro da mesma proporção 4:3 do slot do grid. */
+.hero__media--label3d {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  padding-block: var(--space-4);
+}
+
 @media (min-width: 768px) {
   .hero__grid {
     grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
